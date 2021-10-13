@@ -17,7 +17,7 @@ dp(n) =   0   												(n = 0)
 递归树的节点数量为O(n^k)，子问题的时间复杂度为O(k)，故总的时间复杂度为O(k * n^k)
 */
 
-func CoinChangeRecursion(n int,coins []int) int {
+func CoinChangeRecursion(n int, coins []int) int {
 	//base case
 	if n == 0 {
 		return 0
@@ -27,12 +27,12 @@ func CoinChangeRecursion(n int,coins []int) int {
 	}
 
 	res := math.MaxInt
-	for _,val := range coins {
-		newRes := CoinChangeRecursion(n-val,coins)     //子问题
+	for _, val := range coins {
+		newRes := CoinChangeRecursion(n-val, coins) //子问题
 		if newRes == -1 {
 			continue
 		}
-		if newRes + 1 < res {               		   //选择
+		if newRes+1 < res { //选择
 			res = newRes + 1
 		}
 	}
@@ -44,8 +44,8 @@ func CoinChangeRecursion(n int,coins []int) int {
 在函数CoinChangeRecursion中存在重复子问题，可采取“备忘录”进一步优化。修改后，子问题个数为O(n)，算法时间
 复杂度降低为O(kn)，空间复杂度增加为O(n)
 */
-var memo = make(map[int]int)    		          //key为金额，value为凑出这个金额至少需要的硬币数量
-func CoinChangeRecModify(n int,coins []int) int {
+var memo = make(map[int]int) //key为金额，value为凑出这个金额至少需要的硬币数量
+func CoinChangeRecModify(n int, coins []int) int {
 	//base case
 	if n == 0 {
 		return 0
@@ -55,23 +55,23 @@ func CoinChangeRecModify(n int,coins []int) int {
 	}
 	//递归
 	res := math.MaxInt
-	for _,val := range coins {
-		if n - val < 0 {
+	for _, val := range coins {
+		if n-val < 0 {
 			continue
 		}
 		//如果子问题已经计算过了，那么就跳过
 		newRes := 0
-		if num,ok := memo[n-val];ok {
+		if num, ok := memo[n-val]; ok {
 			newRes = num
 		} else {
-			newRes = CoinChangeRecModify(n-val,coins)
+			newRes = CoinChangeRecModify(n-val, coins)
 			memo[n-val] = newRes
 		}
 		//执行选择以更新res
 		if newRes == -1 {
 			continue
 		}
-		if newRes + 1 < res {
+		if newRes+1 < res {
 			res = newRes + 1
 		}
 	}
@@ -88,32 +88,30 @@ dp[i] =   0   					  (i = 0)
 时间复杂度为O(kn)，空间复杂度为O(n)
 */
 
-func CoinChangeIter(n int,coins []int) int {
+func CoinChangeIter(n int, coins []int) int {
 	//dp table
-	dp := make([]int,n+1)
-	for i:=0;i<len(dp);i++ {
+	dp := make([]int, n+1)
+	for i := 0; i < len(dp); i++ {
 		dp[i] = n + 1
 	}
 	//base case
 	dp[0] = 0
 	//迭代。对dp[i]需要尝试选择所有面值的硬币
-	for i:=0;i < len(dp);i++ {
-		for _,val := range coins {
-			if i - val < 0 {
+	for i := 0; i < len(dp); i++ {
+		for _, val := range coins {
+			if i-val < 0 {
 				continue
 			}
 			//选择
-			if dp[i] > dp[i - val] + 1 {
-				dp[i] = dp[i - val] + 1
+			if dp[i] > dp[i-val]+1 {
+				dp[i] = dp[i-val] + 1
 			}
 		}
 	}
 
-	if dp[n] == n + 1 {
+	if dp[n] == n+1 {
 		return -1
 	}
 
 	return dp[n]
 }
-
-

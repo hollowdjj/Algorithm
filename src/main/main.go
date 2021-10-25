@@ -27,9 +27,14 @@ func testMinFallingPath() {
 	fmt.Println(dp.MinFallingPathSumCompressed([][]int{{2, 1, 3}, {6, 5, 4}, {7, 8, 9}}))
 }
 
+func testTargetSumWays() {
+	fmt.Println(dp.TargetSumWaysBackTrack([]int{1, 1, 1, 1, 1}, 3))
+	fmt.Println(dp.TargetSumWaysDp([]int{1, 1, 1, 1, 1}, 3))
+}
 func main() {
 	//testFib()
 	//testCoinChange()
 	//testLis()
-	testMinFallingPath()
+	//testMinFallingPath()
+	testTargetSumWays()
 }

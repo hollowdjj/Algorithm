@@ -15,7 +15,6 @@ for 状态1 in 状态1的所有取值：
             dp[状态1][状态2][...] = 求最值(选择1，选择2...)
 */
 
-
 /*!
 斐波拉契数列f(n)的计算方式为：f(0) = 0  f(1) = 1; 当n大于等于2时，f(n) = f(n-1) + f(n-2)
 因此，很显然可以使用递归的方式进行求解。然而，这种递归方式存在大量的重复计算。例如，当我们要计
@@ -40,22 +39,22 @@ func FibBase(n int) int {
 将一个较大规模的问题，例如f(20)向下逐渐分解，直到base case，与动态规划的“自底向上”刚好相反。
 */
 
-func helper(n int,m map[int]int) int {
+func helper(n int, m map[int]int) int {
 	if n == 0 || n == 1 {
 		return n
 	}
 	//如果子问题已经计算过了，那么直接返回
-	if val,ok := m[n];ok {
+	if val, ok := m[n]; ok {
 		return val
 	}
 	//计算子问题
-	m[n] = helper(n-1,m) + helper(n-2,m)
+	m[n] = helper(n-1, m) + helper(n-2, m)
 	return m[n]
 }
 
 func FibMemo(n int) int {
-	memo := make(map[int]int,n+1)               //用哈希表实现一个备忘录。key为n,value为f(n)
-	return helper(n,memo)
+	memo := make(map[int]int, n+1) //用哈希表实现一个备忘录。key为n,value为f(n)
+	return helper(n, memo)
 }
 
 /*!
@@ -71,10 +70,10 @@ dp函数定义：  dp(n) 输入数字n，返回斐波拉契数列f(n)的值
 */
 
 func FibDp(n int) int {
-	table := make([]int,n+1)
-	table[0],table[1] = 0,1                 //base case
+	table := make([]int, n+1) //dp table
+	table[0], table[1] = 0, 1 //base case
 
-	for i:=2;i<=n;i++ {
+	for i := 2; i <= n; i++ {
 		table[i] = table[i-1] + table[i-2] //选择
 	}
 
@@ -86,8 +85,8 @@ func FibDp(n int) int {
 */
 
 func FibDpModify(n int) int {
-	prevOfPrev,prev := 0,1
-	for i:=2;i<=n;i++ {
+	prevOfPrev, prev := 0, 1
+	for i := 2; i <= n; i++ {
 		temp := prev
 		prev = prev + prevOfPrev
 		prevOfPrev = temp
@@ -95,4 +94,3 @@ func FibDpModify(n int) int {
 
 	return prev
 }
-

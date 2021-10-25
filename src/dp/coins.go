@@ -59,7 +59,7 @@ func CoinChangeRecModify(n int, coins []int) int {
 		if n-val < 0 {
 			continue
 		}
-		//如果子问题已经计算过了，那么就跳过
+		//如果子问题已经计算过了，那么就跳过，否则计算子问题并将结果添加至备忘录
 		newRes := 0
 		if num, ok := memo[n-val]; ok {
 			newRes = num

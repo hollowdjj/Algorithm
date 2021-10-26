@@ -31,10 +31,18 @@ func testTargetSumWays() {
 	fmt.Println(dp.TargetSumWaysBackTrack([]int{1, 1, 1, 1, 1}, 3))
 	fmt.Println(dp.TargetSumWaysDp([]int{1, 1, 1, 1, 1}, 3))
 }
+
+func testMinDistance() {
+	fmt.Println(dp.MinDistanceRecursion("rad", "apple"))
+	fmt.Println(dp.MinDistanceDp("rad", "apple"))
+	fmt.Println(dp.MinDistanceDpCompressed("rad", "apple"))
+}
+
 func main() {
 	//testFib()
 	//testCoinChange()
 	//testLis()
 	//testMinFallingPath()
-	testTargetSumWays()
+	//testTargetSumWays()
+	testMinDistance()
 }

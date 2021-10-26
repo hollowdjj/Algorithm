@@ -82,7 +82,7 @@ func subset(nums []int, sum int) int {
 	for i := 0; i <= n; i++ {
 		dp[i][0] = 1
 	}
-
+	//选择
 	for i := 1; i <= n; i++ {
 		for j := 0; j <= sum; j++ {
 			if j >= nums[i-1] {
@@ -105,5 +105,6 @@ func TargetSumWaysDp(nums []int, target int) int {
 	if sum < target || (target+sum)%2 != 0 {
 		return 0
 	}
-	return subset(nums, sum)
+
+	return subset(nums, (target+sum)/2)
 }

@@ -38,11 +38,20 @@ func testMinDistance() {
 	fmt.Println(dp.MinDistanceDpCompressed("rad", "apple"))
 }
 
+func testMaxEnvelopes() {
+	data := []dp.Envelope{{Width: 5, Height: 4},
+		{Width: 6, Height: 4},
+		{Width: 6, Height: 7},
+		{Width: 2, Height: 3}}
+	fmt.Println(dp.MaxEnvelopes(data))
+}
+
 func main() {
 	//testFib()
 	//testCoinChange()
 	//testLis()
 	//testMinFallingPath()
 	//testTargetSumWays()
-	testMinDistance()
+	//testMinDistance()
+	testMaxEnvelopes()
 }

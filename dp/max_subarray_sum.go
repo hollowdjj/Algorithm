@@ -39,3 +39,22 @@ func MaxSubArraySum(nums []int) int {
 
 	return res
 }
+
+func MaxSubArraySumCompressed(nums []int) int {
+	prev := nums[0]
+	max := math.MinInt
+	for i := 1; i < len(nums); i++ {
+		temp := 0
+		if prev > 0 {
+			temp = prev + nums[i]
+		} else {
+			temp = nums[i]
+		}
+		if temp > max {
+			max = temp
+		}
+		prev = temp
+	}
+
+	return max
+}

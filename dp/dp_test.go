@@ -22,7 +22,11 @@ func TestMaxEnvelopes(t *testing.T) {
 func TestMaxSubArraySum(t *testing.T) {
 	testData := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
 	res := MaxSubArraySum(testData)
+	res1 := MaxSubArraySumCompressed(testData)
 	if res != 6 {
 		t.Errorf("The result for %v should be %d, but got %d", testData, 6, res)
+	}
+	if res1 != 6 {
+		t.Errorf("The result for %v should be %d, but got %d", testData, 6, res1)
 	}
 }

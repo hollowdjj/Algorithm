@@ -51,6 +51,12 @@ func testMaxSubArraySum() {
 	fmt.Println(dp.MaxSubArraySum(testData))
 }
 
+func testLcs() {
+	s1, s2 := "bl", "yby"
+	fmt.Println(dp.Lcs(s1, s2))
+	fmt.Println(dp.LcsCompressed(s1, s2))
+}
+
 func main() {
 	//testFib()
 	//testCoinChange()
@@ -59,5 +65,6 @@ func main() {
 	//testTargetSumWays()
 	//testMinDistance()
 	//testMaxEnvelopes()
-	testMaxSubArraySum()
+	//testMaxSubArraySum()
+	testLcs()
 }

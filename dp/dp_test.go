@@ -30,3 +30,12 @@ func TestMaxSubArraySum(t *testing.T) {
 		t.Errorf("The result for %v should be %d, but got %d", testData, 6, res1)
 	}
 }
+
+func TestLcs(t *testing.T) {
+	s1, s2 := "abcde", "ace"
+	res := Lcs(s1, s2)
+	res1 := LcsCompressed(s1, s2)
+	if res != 3 && res1 != 3 {
+		t.Errorf("Something is wrong\n")
+	}
+}

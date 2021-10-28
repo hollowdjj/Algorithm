@@ -46,6 +46,11 @@ func testMaxEnvelopes() {
 	fmt.Println(dp.MaxEnvelopes(data))
 }
 
+func testMaxSubArraySum() {
+	testData := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
+	dp.MaxSubArraySum(testData)
+}
+
 func main() {
 	//testFib()
 	//testCoinChange()
@@ -53,5 +58,6 @@ func main() {
 	//testMinFallingPath()
 	//testTargetSumWays()
 	//testMinDistance()
-	testMaxEnvelopes()
+	//testMaxEnvelopes()
+	testMaxSubArraySum()
 }

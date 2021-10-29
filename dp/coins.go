@@ -80,38 +80,35 @@ func CoinChangeRecModify(n int, coins []int) int {
 }
 
 /*
-dp数组定义：dp[i]，当目标金额为i时，至少需要dp[i]枚硬币
-状态转移方程：
-         -1  					  (i < 0)
-dp[i] =   0   					  (i = 0)
-          min(dp[i],dp[i-ck] + 1) (i > 0)
+dp数组定义：dp[i]，当目标金额为i时，至少需要dp[i]枚硬币。因此，最后返回的结果为dp[target]
+从而，可以很容易地得到状态转移方程：
+dp[i] = min{dp[i-coins[j]]} + 1
+这是因为，当目标金额为i时，一个有{i-coins[j]}种可能可以凑出i
 时间复杂度为O(kn)，空间复杂度为O(n)
 */
 
-func CoinChangeIter(n int, coins []int) int {
+func CoinChangeIter(target int, coins []int) int {
 	//dp table
-	dp := make([]int, n+1)
+	dp := make([]int, target+1)
 	for i := 0; i < len(dp); i++ {
-		dp[i] = n + 1
+		dp[i] = target + 1
 	}
 	//base case
 	dp[0] = 0
-	//迭代。对dp[i]需要尝试选择所有面值的硬币
+	//迭代。对dp[i]需要尝试选择所有面值的硬币，以找到最佳值
 	for i := 0; i < len(dp); i++ {
 		for _, val := range coins {
 			if i-val < 0 {
 				continue
 			}
 			//选择
-			if dp[i] > dp[i-val]+1 {
-				dp[i] = dp[i-val] + 1
-			}
+			dp[i] = minOfTwo(dp[i], dp[i-val]+1)
 		}
 	}
-
-	if dp[n] == n+1 {
+	//判断是否有解
+	if dp[target] == target+1 {
 		return -1
 	}
 
-	return dp[n]
+	return dp[target]
 }

@@ -1,6 +1,16 @@
 package dp
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
+
+func TestCoinChange(t *testing.T) {
+
+	fmt.Println(CoinChangeRecursion(11, []int{1, 2, 5}))
+	fmt.Println(CoinChangeIter(11, []int{1, 2, 5}))
+	fmt.Println(CoinChangeRecModify(11, []int{1, 2, 5}))
+}
 
 func TestMaxEnvelopes(t *testing.T) {
 	testData := []Envelope{{Width: 5, Height: 4},
